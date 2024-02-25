@@ -34,6 +34,7 @@ function M.delta(cmd)
       return vim.fn.executable(cmd:match("^%S+")) == 1
     end,
     make_cmdline = function(changes)
+      print(vim.inspect(vim.fn.shellescape(changes:diff({ pseudo_args = "--git" }))))
       return string.format("echo %s | %s", vim.fn.shellescape(changes:diff({ pseudo_args = "--git" })), cmd)
     end,
   }
